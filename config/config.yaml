@@ -1,0 +1,37 @@
+input_dir: "/data/temporary/leopard/models/gc-test-outputs"
+output_dir: "/data/temporary/leopard/source/evaluation/results"
+ground_truth_path: "/data/temporary/leopard/source/evaluation/results/ground_truth/"
+
+teams:
+  - martellab_2
+  - paicon_2
+  - hitszlab_2
+  - airamatrix_1
+  - iucompath
+  - katherlab
+  - baseline
+  - quiilab_updated
+  - mevis_updated
+
+datasets:
+  - radboud: 100
+  - plco: 724
+  - brazil: 432
+  - cologne: 338
+
+team_names:
+  martellab_2: MartelLab
+  paicon_2: Paicon
+  hitszlab_2: HITSZLab
+  airamatrix_1: AIRA Matrix
+  iucompath: IUComPath
+  katherlab: KatherTeam
+  baseline: LEOPARD Baseline
+  quiilab_updated: QuIIL Lab
+  mevis_updated: MEVIS-ProSurvival
+
+dataset_names:
+  radboud: RUMC
+  plco: PLCO
+  brazil: HIAE
+  cologne: UHC

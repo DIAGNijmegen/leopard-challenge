@@ -1,0 +1,11 @@
+input_dir: "/data/temporary/leopard/models/gc-test-outputs"
+output_dir: "/data/temporary/leopard/source/evaluation/results"
+ground_truth_path: "/data/temporary/leopard/source/evaluation/results/ground_truth/"
+
+teams:
+  - martellab_2
+
+
+datasets:
+  - radboud: 100
+
