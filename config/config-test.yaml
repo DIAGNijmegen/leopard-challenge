@@ -1,11 +1,56 @@
 input_dir: "/data/temporary/leopard/models/gc-test-outputs"
 output_dir: "/data/temporary/leopard/source/evaluation/results"
 ground_truth_path: "/data/temporary/leopard/source/evaluation/results/ground_truth/"
+clinical_variables: "/data/temporary/leopard/source/evaluation/results/clinical_variables/"
 
 teams:
+  - mevis_updated
   - martellab_2
+  - paicon_2
+  - baseline
+  - airamatrix_1
+  - hitszlab_2
+  - katherlab
+  - quiilab_updated
+  - iucompath
 
+ensemble_teams:
+  - mevis_updated
+  - martellab_2
+  - paicon_2
+  - airamatrix_1
+  - hitszlab_2
+
+
+ 
 
 datasets:
   - radboud: 100
+  - plco: 724
+  - brazil: 432
+  - cologne: 338
 
+team_names:
+  martellab_2: MartelLab
+  paicon_2: Paicon
+  hitszlab_2: HITSZLab
+  airamatrix_1: AIRA Matrix
+  iucompath: IUCompPath
+  katherlab: KatherTeam
+  baseline: LEOPARD Baseline
+  quiilab_updated: QuIIL Lab
+  mevis_updated: MEVIS-ProSurvival
+
+dataset_names:
+  radboud: RUMC
+  plco: PLCO
+  brazil: IMP
+  cologne: UHC
+
+
+dataset_clinical_variables:
+  radboud_development: RUMC Development
+  radboud_test: RUMC Internal Validation
+  plco: PLCO Internal Validation
+  brazil: IMP
+  cologne: UHC
