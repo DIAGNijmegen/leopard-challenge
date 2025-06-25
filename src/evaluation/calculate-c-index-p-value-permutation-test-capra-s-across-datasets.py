@@ -5,7 +5,7 @@ import yaml
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-
+from scipy.stats import permutation_test
 from sklearn.utils import resample
 from lifelines import CoxPHFitter
 from lifelines.utils import concordance_index
@@ -61,24 +61,23 @@ def load_predictions(input_dir, teams, datasets):
     return predictions
 
 def calculate_p_value_permutation(events, times, preds1, preds2, n_permutations=1000, random_state=1):
-    rng = np.random.RandomState(random_state)
-    c1_orig = concordance_index(times, preds1, events)
-    c2_orig = concordance_index(times, preds2, events)
-    original_diff = c1_orig - c2_orig
+    def c_index_diff(data1, data2):
+        c1 = concordance_index(times, data1, events)
+        c2 = concordance_index(times, data2, events)
+        return c1 - c2
 
-    S = np.vstack([preds1, preds2]).T
-    null_diffs = np.zeros(n_permutations)
+    result = permutation_test(
+        (preds1, preds2),
+        statistic=c_index_diff,
+        permutation_type='samples',
+        n_resamples=n_permutations,
+        alternative='two-sided',
+        random_state=random_state
+    )
 
-    for i in range(n_permutations):
-        swap_mask = rng.rand(len(events)) < 0.5
-        permuted = S.copy()
-        permuted[swap_mask] = permuted[swap_mask][:, ::-1]
-        c1p = concordance_index(times, permuted[:, 0], events)
-        c2p = concordance_index(times, permuted[:, 1], events)
-        null_diffs[i] = c1p - c2p
-
-    p_value = np.mean(np.abs(null_diffs) >= abs(original_diff))
-    return original_diff, p_value, null_diffs
+    observed_diff = c_index_diff(preds1, preds2)
+    p_value = result.pvalue
+    return observed_diff, p_value, result.null_distribution
 
 def bootstrap_c_index(events, times, predictions, n_bootstraps):
     original_c_index = concordance_index(times, predictions, events)
