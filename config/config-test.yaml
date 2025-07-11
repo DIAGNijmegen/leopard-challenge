@@ -1,7 +1,7 @@
-input_dir: "/data/temporary/leopard/models/gc-test-outputs"
-output_dir: "/data/temporary/leopard/source/evaluation/results"
-ground_truth_path: "/data/temporary/leopard/source/evaluation/results/ground_truth/"
-clinical_variables: "/data/temporary/leopard/source/evaluation/results/clinical_variables/"
+input_dir: "gc-test-outputs"
+output_dir: "results"
+ground_truth_path: "ground-truth"
+clinical_variables: "clinical-variables"
 
 teams:
   - mevis_updated
@@ -25,10 +25,7 @@ ensemble_teams:
  
 
 datasets:
-  - radboud: 100
-  - plco: 724
-  - brazil: 432
-  - cologne: 338
+  - radboud: 5
 
 team_names:
   martellab_2: MartelLab
@@ -43,9 +40,7 @@ team_names:
 
 dataset_names:
   radboud: RUMC
-  plco: PLCO
-  brazil: IMP
-  cologne: UHC
+
 
 
 dataset_clinical_variables:
