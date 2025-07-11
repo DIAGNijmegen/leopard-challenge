@@ -45,7 +45,5 @@ dataset_names:
 
 dataset_clinical_variables:
   radboud_development: RUMC Development
-  radboud_test: RUMC Internal Validation
-  plco: PLCO Internal Validation
-  brazil: IMP
-  cologne: UHC
+
+
