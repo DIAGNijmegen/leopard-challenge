@@ -3,7 +3,27 @@ This repository includes code for the LEOPARD study results analysis.
 
 ### Repository structure
 
-
+'''
+├───config
+    ├───demo-data
+    │   ├───clinical-variables
+    │   ├───ground-truth
+    │   └───predictions
+    │       ├───airamatrix_1
+    │       │   └───radboud
+    │       ├───hitszlab_2
+    │       │   └───radboud
+    │       ├───martellab_2
+    │       │   └───radboud
+    │       ├───mevis_updated
+    │       │   └───radboud
+    │       └───paicon_2
+    │           └───radboud
+    └───src
+        ├───evaluation
+        └───unit_tests
+        
+'''
 ### Installing libraries
 
 ### Getting predictions of the algorithms 
