@@ -3,7 +3,7 @@ This repository includes code for the LEOPARD study results analysis.
 
 ### Repository structure
 
-'''
+<pre lang="markdown"> ```
 ├───config
     ├───demo-data
     │   ├───clinical-variables
@@ -23,7 +23,7 @@ This repository includes code for the LEOPARD study results analysis.
         ├───evaluation
         └───unit_tests
         
-'''
+``` </pre>
 ### Installing libraries
 
 ### Getting predictions of the algorithms 
