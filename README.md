@@ -59,4 +59,9 @@ The containers can be provided for reviewers upon request.
 
 ### Running evaluation code
 
-After installing the necessary libraries, specify the correct local paths to the ground truth data, predictions in the `config-test.json`. First, run the scripts that generate tabular data, and afterwards run the scripts to generate figures. The simulated dataset includes only 5 samples. If you want to run the code that has bootstrapping or permutation, you would need to decrease the amount of resampling, as resampling the small dataset will result in no admissible pairs found. 
+After installing the necessary libraries, specify the correct local paths to the ground truth data, predictions in the `config-test.json`. First, run the scripts that generate tabular data, and afterwards run the scripts to generate figures. The simulated dataset includes only 5 samples. If you want to run the evaluation code that has bootstrapping or permutation, you would need to decrease the amount of resampling, as resampling the small dataset will result in no admissible pairs found.
+
+
+### Expected output
+
+The expected output of evaluation scripts on real data are tables and figures from the paper. 
