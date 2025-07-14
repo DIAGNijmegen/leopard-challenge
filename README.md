@@ -43,4 +43,4 @@ The Docker containers are programmed to read input whole slide images from `\inp
 
 ### Running evaluation code
 
-After installing the necessary libraries, specify the correct local paths to the ground truth data, predictions in the `config-test.json`. First, run the scripts that generate tabular data, and afterwards run the scripts to generate figures. 
+After installing the necessary libraries, specify the correct local paths to the ground truth data, predictions in the `config-test.json`. First, run the scripts that generate tabular data, and afterwards run the scripts to generate figures. The simulated dataset includes only 5 samples. If you want to run the code that has bootstrapping or permutation. You would need to decrease the amount of resampling, as resampling the small dataset will result in no admissible pairs found.
