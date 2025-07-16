@@ -13,7 +13,7 @@ def load_config(config_path):
 
 # Function to load ground truth
 def load_ground_truth(dataset, ground_truth_path):
-    file_path = os.path.join(ground_truth_path, f"{dataset}_clinical_standardized_capra_s.csv")
+    file_path = os.path.join(ground_truth_path, f"{dataset}_clinical_standardized_capra_s_postsubmission.csv")
     return pd.read_csv(file_path, dtype={"case_id": str})
 
 # Function to count unique cases
