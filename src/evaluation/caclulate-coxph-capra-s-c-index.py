@@ -44,7 +44,7 @@ def main(config_path, output_csv):
     results = []
     
     for dataset in datasets:
-        dataset_path = f"{ground_truth_path}{dataset}_clinical_standardized_capra_s.csv"
+        dataset_path = f"{ground_truth_path}{dataset}_clinical_standardized_capra_s_postsubmission.csv"
         
 
         df = pd.read_csv(dataset_path)
