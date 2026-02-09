@@ -54,11 +54,11 @@ def isup_to_risk_group(isup):
         return np.nan
     isup = int(isup)
     if isup in (1,2):
-        return "low"
+        return "Low"
     elif isup == 3:
-        return "intermediate"
+        return "Intermediate"
     elif isup in (4, 5):
-        return "high"
+        return "High"
     return np.nan
 
 
@@ -124,10 +124,11 @@ def compute_cox_metrics(pred_df, gt_df):
     )
 
     return {
-        'N': int(df.shape[0]),
-        'C-index AI Ensemble': ai_c,
-        'C-index CAPRA-S': cs_c,
-        'C-index CAPRA-S + AI Ensemble': comb_c,
+        'N (Total Dataset)': int(df.shape[0]),
+        'Events (Total Dataset)': int(df['event'].sum()),
+        'C-index AI Ensemble (Total Dataset)': ai_c,
+        'C-index CAPRA-S (Total Dataset)': cs_c,
+        'C-index CAPRA-S + AI Ensemble (Total Dataset)': comb_c,
     }
 
 # --- MODIFIED: supports ISUP strata OR risk-group strata; can disable CI ---
@@ -141,16 +142,22 @@ def compute_cindex_by_isup(
 
     if group_mode == "risk":
         df["ISUP_GROUP"] = df["ISUP"].apply(isup_to_risk_group)
-        df = df.dropna(subset=["ISUP_GROUP"])
-        strata = sorted(df["ISUP_GROUP"].unique())
+        #df = df.dropna(subset=["ISUP_GROUP"])
+        
+        order = ['Low', 'Intermediate', 'High']
+        strata = sorted(df["ISUP_GROUP"].unique(),key=lambda x: order.index(x))
         def suffix(g): return f" (ISUP-group={g})"
         def subset(g): return df[df["ISUP_GROUP"] == g]
     else:
+        
+        df.drop(df[df["ISUP"].isin([1])].index, inplace=True)
         strata = sorted(df["ISUP"].unique())
+        
         def suffix(g): return f" (ISUP={int(g)})"
         def subset(g): return df[df["ISUP"] == g]
 
     rows = {}
+    print(strata)
 
     for g in strata:
         sdf = subset(g)
@@ -189,11 +196,12 @@ def compute_cindex_by_isup(
         )
 
         suf = suffix(g)
+        rows[f'N{suf}'] = int(sdf.shape[0])
+        rows[f'Events{suf}'] = int(sdf['event'].sum())
         rows[f'C-index AI Ensemble{suf}'] = ai_c
         rows[f'C-index CAPRA-S{suf}'] = cs_c
         rows[f'C-index CAPRA-S + AI Ensemble{suf}'] = comb_c
-        rows[f'N{suf}'] = int(sdf.shape[0])
-        rows[f'Events{suf}'] = int(sdf['event'].sum())
+        
 
     return rows
 
@@ -232,10 +240,17 @@ def compute_and_save(preds, datasets, gt_dir, out_dir, cfg):
             sub,
             group_mode="risk"
         )
+        
         rec.update(risk_rows)
         
+        isup_rows = compute_cindex_by_isup(
+            pred_df,
+            sub,
+            group_mode="isup"
+        )
         
-
+        rec.update(isup_rows)       
+        
         print(cfg["dataset_names"][ds])
         rec['Dataset'] = cfg["dataset_names"][ds]
         records.append(rec)
