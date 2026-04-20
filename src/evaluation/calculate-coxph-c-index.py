@@ -134,8 +134,8 @@ def save_results(results, results_csv, output_dir):
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
     
-    csv_path = os.path.join(output_dir, 'c_index_results.csv')
-    latex_path = os.path.join(output_dir, 'c_index_results.tex')
+    csv_path = os.path.join(output_dir, 'c_index_results_median.csv')
+    latex_path = os.path.join(output_dir, 'c_index_results_median.tex')
     
     
     
@@ -157,5 +157,5 @@ def main(config_path):
 
 if __name__ == '__main__':
     import sys
-    config_path = "/data/temporary/leopard/source/evaluation/pathology-leopard-evaluation/config/config.yaml"
+    config_path = "/data/pathology/projects/leopard/source/evaluation/pathology-leopard-evaluation/config/config.yaml"
     main(config_path)
