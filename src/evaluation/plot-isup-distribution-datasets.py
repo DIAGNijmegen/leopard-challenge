@@ -8,7 +8,7 @@ def load_config(config_path):
         return yaml.safe_load(f)
 
 def main():
-    config = load_config("/data/temporary/leopard/source/evaluation/pathology-leopard-evaluation/config/config.yaml")
+    config = load_config("/data/pathology/projects/leopard/source/evaluation/pathology-leopard-evaluation/config/config.yaml")
 
     datasets_dict = config["datasets"]
     dataset_names_dict = config["dataset_names"]
@@ -58,7 +58,7 @@ def main():
         ax1.set_title(f'{dataset_name} (n={len(df)}): Event = 1')
 
     plt.tight_layout()
-    plt.savefig("/data/temporary/leopard/source/evaluation/results/isup_distribution_datasets.png")
+    plt.savefig("/data/pathology/projects/leopard/source/evaluation/results/isup_distribution_datasets_median.png")
     plt.show()
 
 if __name__ == "__main__":
