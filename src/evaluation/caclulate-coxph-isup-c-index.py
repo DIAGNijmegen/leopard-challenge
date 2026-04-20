@@ -39,18 +39,18 @@ def main(config_path, output_csv):
     dataset_dict = config['datasets']
     datasets = [list(i.keys())[0] for i in dataset_dict]
     print(datasets)
-    ground_truth_path = config.get("ground_truth_path", "")
+    ground_truth_path = config.get("clinical_variables", "")
     
     results = []
     
     for dataset in datasets:
-        dataset_path = f"{ground_truth_path}{dataset}.csv"
+        dataset_path = f"{ground_truth_path}{dataset}_capra_s_median.csv"
         
 
         df = pd.read_csv(dataset_path)
         
         num_cases = get_unique_case_count(df)
-        c_index = compute_c_index(df, "isup", "follow_up_years", "event")
+        c_index = compute_c_index(df, "ISUP", "follow_up_years", "event")
         print(num_cases,dataset,c_index)
         results.append({"dataset": dataset, "c_index": c_index,"#cases":num_cases})
 
@@ -62,6 +62,6 @@ def main(config_path, output_csv):
 
 # Run the script
 if __name__ == "__main__":
-    config_file = "/data/temporary/leopard/source/evaluation/pathology-leopard-evaluation/config/config.yaml"  # Adjust path as needed
-    output_file = "c_index_isup_results.csv"
+    config_file = "/data/pathology/projects/leopard/source/evaluation/pathology-leopard-evaluation/config/config.yaml"  # Adjust path as needed
+    output_file = "c_index_isup_results_rebuttal_median.csv"
     main(config_file, output_file)
