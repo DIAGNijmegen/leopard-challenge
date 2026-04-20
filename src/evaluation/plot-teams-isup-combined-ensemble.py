@@ -44,10 +44,10 @@ def main(config_path):
     # Load data from CSV files
     config = load_config(config_path)
     
-    team_predictions = pd.read_csv(os.path.join(config["output_dir"], "c_index_results.csv"))
-    team_combined_isup = pd.read_csv(os.path.join(config["output_dir"], "c_index_model_isup_combined_results.csv"))
-    pathologist_isup = pd.read_csv(os.path.join(config["output_dir"], "c_index_isup_results.csv"))
-    team_ensemble = pd.read_csv(os.path.join(config["output_dir"], "c_index_ensemble_results.csv"))
+    team_predictions = pd.read_csv(os.path.join(config["output_dir"], "c_index_results_median.csv"))
+    team_combined_isup = pd.read_csv(os.path.join(config["output_dir"], "c_index_model_isup_combined_results_median.csv"))
+    pathologist_isup = pd.read_csv(os.path.join(config["output_dir"], "c_index_isup_results_rebuttal_median.csv"))
+    team_ensemble = pd.read_csv(os.path.join(config["output_dir"], "c_index_ensemble_results_median.csv"))
 
     datasets = ["radboud", "plco", "brazil", "cologne"]
     dataset_names = config["dataset_names"]
@@ -105,8 +105,8 @@ def main(config_path):
     )
 
     # Save and show plot
-    plt.savefig(os.path.join(config["output_dir"], "detailed_c_index_plots.png"), bbox_inches='tight')
+    plt.savefig(os.path.join(config["output_dir"], "detailed_c_index_plots_median.png"), bbox_inches='tight')
     plt.show()
 
 if __name__ == '__main__':
-    main("/data/temporary/leopard/source/evaluation/pathology-leopard-evaluation/config/config.yaml")
+    main("/data/pathology/projects/leopard/source/evaluation/pathology-leopard-evaluation/config/config.yaml")
