@@ -44,7 +44,7 @@ def main(config_path, output_csv):
     results = []
     
     for dataset in datasets:
-        dataset_path = f"{ground_truth_path}{dataset}_clinical_standardized_capra_s_postsubmission.csv"
+        dataset_path = f"{ground_truth_path}{dataset}_capra_s_median.csv"
         
 
         df = pd.read_csv(dataset_path)
@@ -62,6 +62,6 @@ def main(config_path, output_csv):
 
 # Run the script
 if __name__ == "__main__":
-    config_file = "/data/temporary/leopard/source/evaluation/pathology-leopard-evaluation/config/config.yaml"  # Adjust path as needed
-    output_file = "c_index_capra_results.csv"
+    config_file = "/data/pathology/projects/leopard/source/evaluation/pathology-leopard-evaluation/config/config.yaml"  # Adjust path as needed
+    output_file = "c_index_capra_results_rebuttal_median.csv"
     main(config_file, output_file)
