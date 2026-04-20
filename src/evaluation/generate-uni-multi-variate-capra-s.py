@@ -13,7 +13,7 @@ def load_config(config_path):
 
 # Function to load ground truth
 def load_ground_truth(dataset, ground_truth_path):
-    file_path = os.path.join(ground_truth_path, f"{dataset}_clinical_standardized_capra_s_postsubmission.csv")
+    file_path = os.path.join(ground_truth_path, f"{dataset}_capra_s_median.csv")
     return pd.read_csv(file_path, dtype={"case_id": str})
 
 # Function to count unique cases
@@ -110,10 +110,10 @@ def format_results(results):
 def save_results(df, output_dir):
     os.makedirs(output_dir, exist_ok=True)
     # CSV
-    df.to_csv(os.path.join(output_dir,'cox_metrics_capra_s.csv'), index=False)
+    df.to_csv(os.path.join(output_dir,'cox_metrics_capra_s_median.csv'), index=False)
 
     # LaTeX: separate tables
-    tex_file = os.path.join(output_dir,'cox_metrics_capra_s.tex')
+    tex_file = os.path.join(output_dir,'cox_metrics_capra_s_median.tex')
     with open(tex_file,'w') as f:
         for ds in df['Dataset'].unique():
             sub = df[df['Dataset']==ds].set_index('Team').reindex(TEAMS_ORDER)
@@ -134,7 +134,7 @@ def save_results(df, output_dir):
 # Main entry point
 if __name__=='__main__':
     # Hardcoded config path as before
-    main_config = "/data/temporary/leopard/source/evaluation/pathology-leopard-evaluation/config/config.yaml"
+    main_config = "/data/pathology/projects/leopard/source/evaluation/pathology-leopard-evaluation/config/config.yaml"
     cfg = load_config(main_config)
     preds = load_predictions(cfg['input_dir'], cfg['teams'], cfg['datasets'])
     results = compute_cox_metrics(preds, cfg['datasets'], cfg['clinical_variables'], cfg['team_names'], cfg['dataset_names'])
