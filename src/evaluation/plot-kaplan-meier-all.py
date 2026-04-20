@@ -98,7 +98,7 @@ def plot_all_kaplan_meier(config):
                 add_at_risk_counts(*kmfs.values(), ax=ax)
 
         plt.tight_layout()
-        output_path = os.path.join(config['output_dir'], f'kaplan_meier_{team}.png')
+        output_path = os.path.join(config['output_dir'], f'kaplan_meier_{team}_median.png')
         plt.savefig(output_path)
         plt.close(fig)
 
@@ -109,4 +109,4 @@ def main(config_path):
     plot_all_kaplan_meier(config)
     
 if __name__ == '__main__':
-    main("/data/temporary/leopard/source/evaluation/pathology-leopard-evaluation/config/config.yaml")
+    main("/data/pathology/projects/leopard/source/evaluation/pathology-leopard-evaluation/config/config.yaml")
