@@ -23,7 +23,7 @@ def load_config(config_path):
         return yaml.safe_load(file)
 
 def load_ground_truth(dataset, ground_truth_path):
-    file_path = os.path.join(ground_truth_path, f"{dataset}_clinical_standardized_capra_s_postsubmission.csv")
+    file_path = os.path.join(ground_truth_path, f"{dataset}_capra_s_median.csv")
     return pd.read_csv(file_path, dtype={"case_id": str})[['case_id', 'event', 'follow_up_years', 'capra_s_score']]
 
 def zscore_normalize_dict(data):
@@ -173,9 +173,9 @@ def format_global_results(vals):
 
 def save_global_results(df, output_dir):
     os.makedirs(output_dir, exist_ok=True)
-    df.to_csv(os.path.join(output_dir, 'total_cox_metrics_capra_s_global.csv'), index=False)
+    df.to_csv(os.path.join(output_dir, 'total_cox_metrics_capra_s_global_rebuttal_median.csv'), index=False)
     caption = f"Cox PH models on combined datasets (n={df['n'].max()} total cases)."
-    with open(os.path.join(output_dir, 'total_cox_metrics_capra_s_global.tex'), 'w') as f:
+    with open(os.path.join(output_dir, 'total_cox_metrics_capra_s_global_rebuttal_median.tex'), 'w') as f:
         f.write(df.drop(columns='n').to_latex(escape=False, caption=caption, label="tab:global_cox"))
 
 def compute_ensemble_coxph(predictions, datasets, ground_truth_path):
@@ -232,5 +232,5 @@ def main(config_path):
     print(formatted_results)
 
 if __name__ == '__main__':
-    config_path = "/data/temporary/leopard/source/evaluation/pathology-leopard-evaluation/config/config.yaml"
+    config_path = "/data/pathology/projects/leopard/source/evaluation/pathology-leopard-evaluation/config/config.yaml"
     main(config_path)
