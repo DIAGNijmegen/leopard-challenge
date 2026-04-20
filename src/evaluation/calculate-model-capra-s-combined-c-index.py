@@ -15,7 +15,7 @@ def load_config(config_path):
 
 # Function to load ground truth
 def load_ground_truth(dataset, ground_truth_path):
-    file_path = f"{ground_truth_path}{dataset}_clinical_standardized_capra_s_postsubmission.csv"
+    file_path = f"{ground_truth_path}{dataset}_capra_s_median.csv"
     return pd.read_csv(file_path, dtype={"case_id": str})
 
 # Function to get the number of unique cases
@@ -122,8 +122,8 @@ def save_results(results_df, output_dir):
     formatted_results_df[columns_to_format] = formatted_results_df[columns_to_format].applymap(
         lambda x: f"${x:.3f}$" if pd.notnull(x) else "--")
     
-    latex_path = os.path.join(output_dir, 'c_index_model_capra_s_combined_results.tex')
-    csv_path = os.path.join(output_dir, 'c_index_model_capra_s_combined_results.csv')
+    latex_path = os.path.join(output_dir, 'c_index_model_capra_s_combined_results_median.tex')
+    csv_path = os.path.join(output_dir, 'c_index_model_capra_s_combined_results_median.csv')
     print(formatted_results_df)
     
     with open(latex_path, 'w') as f:
@@ -142,5 +142,5 @@ def main(config_path):
 
 if __name__ == '__main__':
     import sys
-    config_path = "/data/temporary/leopard/source/evaluation/pathology-leopard-evaluation/config/config.yaml"
+    config_path = "/data/pathology/projects/leopard/source/evaluation/pathology-leopard-evaluation/config/config.yaml"
     main(config_path)
