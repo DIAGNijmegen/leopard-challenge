@@ -1,7 +1,9 @@
-input_dir: "/data/temporary/leopard/models/gc-test-outputs"
-output_dir: "/data/temporary/leopard/source/evaluation/results"
-ground_truth_path: "/data/temporary/leopard/source/evaluation/results/ground_truth/"
-clinical_variables: "/data/temporary/leopard/source/evaluation/results/clinical_variables/"
+input_dir: "/data/pathology/projects/leopard/models/gc-test-outputs"
+output_dir: "/data/pathology/projects/leopard/source/evaluation/results"
+validation_dir: "/data/pathology/projects/leopard/models/output"
+ground_truth_path: "/data/pathology/projects/leopard/source/evaluation/results/ground_truth/"
+clinical_variables: "/data/pathology/projects/leopard/source/evaluation/results/clinical_variables/cleaned_capra_s_nb/"
+clinical_variables_tables: "/data/pathology/projects/leopard/source/evaluation/results/clinical_variables/tables/"
 
 teams:
   - mevis_updated
