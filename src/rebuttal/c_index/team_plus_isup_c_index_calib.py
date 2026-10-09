@@ -1,6 +1,5 @@
 # Source: run.ipynb, cell 14
 # AI + ISUP C-index per ensemble team, Cox models frozen on the RUMC calibration set.
-
 import os
 import json
 import pandas as pd
@@ -9,12 +8,12 @@ from lifelines import CoxPHFitter
 from lifelines.utils import concordance_index
 import yaml
 
-# Algorithm + ISUP C-index per ensemble team, with Cox models fit on the RUMC calibration set
-# (RUMC Tuning + RUMC Internal Validation) and frozen; algorithm predictions and ISUP grade are
+# Algorithm + CAPRA-S C-index per ensemble team, with Cox models fit on the RUMC calibration set
+# (RUMC Tuning + RUMC Internal Validation) and frozen; algorithm predictions and CAPRA-S are
 # z-scored with calibration-set mean/SD
-CLINICAL_COL = 'ISUP'            # column in <clinical_variables>/<dataset>_capra_s_median.csv
-CLINICAL_LABEL = 'ISUP grade'
-OUTPUT_NAME = 'c_index_model_isup_combined_results_median_calib'
+CLINICAL_COL = 'capra_s_score'   # column in <clinical_variables>/<dataset>_capra_s_median.csv
+CLINICAL_LABEL = 'CAPRA-S'
+OUTPUT_NAME = 'c_index_model_capra_s_combined_results_median_calib'
 
 # Function to load configuration
 def load_config(config_path):
@@ -43,8 +42,7 @@ def load_predictions(config):
         for dataset_dict in config['datasets']:
             dataset = next(iter(dataset_dict))
             dataset_path = os.path.join(config['input_dir'], team, dataset)
-            if not os.path.isdir(dataset_path):
-                continue
+           
             predictions[team][dataset] = load_prediction_dir(dataset_path)
             expected = dataset_dict[dataset]
             if len(predictions[team][dataset]) != expected:
@@ -57,8 +55,7 @@ def load_predictions(config):
 def build_team_df(team_preds, datasets, ground_truth_path):
     frames = []
     for dataset in datasets:
-        if dataset not in team_preds:
-            continue
+     
         gt = load_ground_truth(dataset, ground_truth_path)
         gt = gt[gt['case_id'].isin(team_preds[dataset].keys())].copy()
         gt['prediction'] = gt['case_id'].map(team_preds[dataset])
@@ -89,8 +86,7 @@ def compute_c_index(predictions, config):
         results[official_team_name] = {}
         for dataset in eval_datasets:
             data = df[df['dataset'] == dataset]
-            if data.empty:
-                continue
+           
             c_index = concordance_index(data['follow_up_years'], -cph.predict_partial_hazard(data[cols]), data['event'])
             results[official_team_name][config['dataset_names'][dataset]] = c_index
     return results
