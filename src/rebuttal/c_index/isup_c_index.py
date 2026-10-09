@@ -1,6 +1,5 @@
 # Source: run.ipynb, cell 4
 # C-index of ISUP grade alone (Cox model) per dataset.
-
 import yaml
 import pandas as pd
 from lifelines.utils import concordance_index
@@ -62,6 +61,13 @@ def main(config_path, output_csv):
     results_df = pd.DataFrame(results)
     results_df.to_csv(Path(config['output_dir']+'/'+output_csv), index=False)
     print(f"Results saved to {output_csv}")
+
+# Run the script
+if __name__ == "__main__":
+    config_file = "/Users/khrystynafaryna/Documents/leopard-rebuttal/config.yaml"  # Adjust path as needed
+    output_file = "c_index_isup_results_rebuttal_median.csv"
+    main(config_file, output_file)
+
 
 # Run the script
 if __name__ == "__main__":
