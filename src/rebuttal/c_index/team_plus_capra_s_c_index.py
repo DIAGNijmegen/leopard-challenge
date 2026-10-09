@@ -1,6 +1,5 @@
 # Source: run.ipynb, cell 9
 # Per-team C-index of a per-dataset Cox model on AI prediction + CAPRA-S.
-
 import os
 import json
 import pandas as pd
