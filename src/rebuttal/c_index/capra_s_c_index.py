@@ -1,6 +1,5 @@
 # Source: run.ipynb, cell 1
 # C-index of CAPRA-S alone (Cox model) per dataset.
-
 import yaml
 import pandas as pd
 from lifelines.utils import concordance_index
@@ -68,3 +67,4 @@ if __name__ == "__main__":
     config_file = "/Users/khrystynafaryna/Documents/leopard-rebuttal/config.yaml"  # Adjust path as needed
     output_file = "c_index_capra_results_rebuttal_median.csv"
     main(config_file, output_file)
+
