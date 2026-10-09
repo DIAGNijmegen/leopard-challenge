@@ -1,7 +1,5 @@
 # Source: run.ipynb, cell 8
 # Ensemble + per-team C-index, z-scored with frozen RUMC calibration-set stats.
-# Notebook note: Check what this is for
-
 import os
 import json
 import pandas as pd
@@ -204,3 +202,4 @@ if __name__ == '__main__':
     import sys
     config_path = "/Users/khrystynafaryna/Documents/leopard-rebuttal/config.yaml" 
     main(config_path)
+
