@@ -1,6 +1,5 @@
 # Source: run.ipynb, cell 10
 # Per-team C-index of a per-dataset Cox model on AI prediction + ISUP.
-
 import os
 import json
 import pandas as pd
@@ -147,3 +146,4 @@ if __name__ == '__main__':
     import sys
     config_path = "/Users/khrystynafaryna/Documents/leopard-rebuttal/config.yaml" 
     main(config_path)
+
