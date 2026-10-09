@@ -1,7 +1,5 @@
 # Source: run.ipynb, cell 6
 # Per-team C-index (bootstrap 95% CI) of the AI predictions on every dataset.
-# Notebook note: Need to copy rest of models first
-
 import os 
 import json
 import pandas as pd
@@ -158,6 +156,12 @@ def main(config_path):
     results,results_csv = compute_c_index(predictions, config['datasets'], config['ground_truth_path'],config['team_names'],config['dataset_names'])
     print(results)
     save_results(results,results_csv, config['output_dir'])
+
+if __name__ == '__main__':
+    import sys
+    config_path = "/Users/khrystynafaryna/Documents/leopard-rebuttal/config.yaml" 
+    main(config_path)
+
 
 if __name__ == '__main__':
     import sys
