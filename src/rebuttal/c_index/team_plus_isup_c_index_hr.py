@@ -1,6 +1,5 @@
 # Source: run.ipynb, cell 11
 # As team_plus_isup_c_index.py, plus HR (95% CI) and p-value of the prediction.
-
 import os
 import json
 import pandas as pd
