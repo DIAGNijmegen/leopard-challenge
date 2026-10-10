@@ -1,6 +1,5 @@
 # Source: run.ipynb, cell 22
 # C-index comparison plot: teams, team + CAPRA-S, CAPRA-S alone, Ensemble.
-
 import pandas as pd 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -119,3 +118,4 @@ def main(config_path):
 
 if __name__ == '__main__':
     main("/Users/khrystynafaryna/Documents/leopard-rebuttal/config.yaml")
+
