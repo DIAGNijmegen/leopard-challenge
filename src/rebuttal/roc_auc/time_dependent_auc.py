@@ -6,6 +6,11 @@
 # (Kernel > Restart, then run just this cell -- no need to run anything above)
 # ======================================================================
 
+# ======================================================================
+# Standalone setup -- duplicated here so this cell runs on its own
+# (Kernel > Restart, then run just this cell -- no need to run anything above)
+# ======================================================================
+
 import os                                    # filesystem paths (predictions live under input_dir/team/dataset/*.json)
 import json                                  # each prediction file is a single JSON number
 import logging                               # the module logs warnings on skipped/missing data; mirrored here
@@ -28,7 +33,7 @@ from sksurv.util import Surv                                      # structured (
 
 
 def get_datasets(config):
-    # config["datasets"] is a list of single-key dicts, e.g. [{"<dataset>": <n_cases>}, ...]
+    # config["datasets"] is a list of single-key dicts, e.g. [{"radboud": 100}, {"plco": 724}, ...]
     return [list(d.keys())[0] for d in config["datasets"]]      # pull out just the dataset-name keys
 
 
@@ -74,7 +79,7 @@ def load_predictions(input_dir, teams, datasets, invert=False):
     predictions = {}                                             # result: {team: {dataset: {case_id: value}}}
     for team in teams:                                           # one subfolder per team
         predictions[team] = {}                                   # this team's per-dataset dict
-        for dataset_dict in datasets:                            # each entry is like {"<dataset>": <n_cases>}
+        for dataset_dict in datasets:                            # each entry is like {"plco": 724}
             dataset = next(iter(dataset_dict))                   # the dataset name (the dict's only key)
             dataset_path = os.path.join(input_dir, team, dataset)   # e.g. input_dir/mevis_updated/plco
             if not os.path.isdir(dataset_path):                  # team may be missing this dataset entirely
@@ -245,7 +250,7 @@ def plot_td_auc_grid(auc_curves, predictor_labels, cohort_labels):
 # ======================================================================
 # ======================================================================
 
-# %matplotlib inline  # notebook-only, disabled in script
+%matplotlib inline
 
 CONFIG_PATH = "/Users/khrystynafaryna/Documents/leopard-rebuttal/config.yaml"   # same config file the real pipeline (main.py) uses
 with open(CONFIG_PATH, "r") as f:            # open the YAML file for reading
@@ -317,3 +322,5 @@ fig.savefig(auc_png_path, dpi=150)
 print(f"Saved {auc_csv_path} ({len(auc_curves)} rows) and {auc_png_path}")
 
 plt.show()
+
+
