@@ -1,6 +1,5 @@
 # Source: run.ipynb, cell 24
 # Team methodology overview figure (methodologies.png).
-
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
@@ -95,6 +94,12 @@ for label in ax.get_yticklabels():
 ax.tick_params(length=0, pad=6)
 for spine in ax.spines.values():
     spine.set_visible(False)
+
+plt.savefig("/Users/khrystynafaryna/Documents/leopard-rebuttal/evaluation/methodologies.png",
+            dpi=300, bbox_inches="tight", facecolor="white")
+plt.show()
+
+# multiresolution(1,0,), color augmentation(1,1,0,0,) aira- loss is not a survival
 
 plt.savefig("/Users/khrystynafaryna/Documents/leopard-rebuttal/evaluation/methodologies.png",
             dpi=300, bbox_inches="tight", facecolor="white")
