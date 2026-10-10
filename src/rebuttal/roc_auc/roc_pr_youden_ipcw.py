@@ -1,6 +1,5 @@
 # Source: run.ipynb, cell 26
 # ROC/PR curves, AUC/AP and Youden-threshold metrics at a fixed horizon (IPCW).
-
 import os
 import json
 import pandas as pd
@@ -375,7 +374,7 @@ def plot_roc_pr_subplots(metrics_by_dataset, out_dir, horizon_years=2):
         ax_pr.set_xlabel("Recall")
         ax_pr.set_ylabel("Precision (PPV)")
         ax_pr.grid(True, alpha=0.25)
-        ax_pr.legend(loc="upper left")
+        ax_pr.legend(loc="upper right")
 
     #fig.suptitle(f"IPCW ROC (left) and Precision–Recall (right) at {horizon_years} years "
     #            f"(Cox models frozen on RUMC calibration set)", y=1.002)
@@ -392,7 +391,7 @@ def plot_roc_pr_subplots(metrics_by_dataset, out_dir, horizon_years=2):
 # all ROC/PR/threshold metrics are IPCW-weighted for censoring before the horizon
 # =========================
 def compute_and_save(preds, datasets, gt_dir, out_dir, cfg):
-    horizon_years = 5 # <-- choose horizon here
+    horizon_years = 3 # <-- choose horizon here
 
     calib_df, df, eval_datasets = build_ensemble_df(preds, datasets, gt_dir, cfg)
     print(f"Calibration set: n={len(calib_df)}, events={int(calib_df['event'].sum())}")
